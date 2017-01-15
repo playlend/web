@@ -17,11 +17,12 @@ elsif answer == 2
 	data["name"] = gets.chomp
 	print "Please, enter your email: "
 	data["email"] = gets.chomp
-	request = data.to_json
+	user = Hash.new()
+	user["person"] = data
+	request_data = user.to_json
+	request = "POST #{request_data} HTTP/1.0\r\n\r\n"
+
 end	
-
-
-
 
 socket = TCPSocket.open(host,port)  # Connect to server
 socket.print(request)               # Send request
